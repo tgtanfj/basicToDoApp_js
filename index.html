@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;0,800;1,700;1,800&family=Poppins:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="content">
+        <section class="header">
+            <div class="container">
+                <div class="header__title">
+                    <div>Javascript and the DOM</div>
+                    <div>Making a web page interactive</div>
+                </div>
+            </div>
+        </section>
+        <section class="hide__button">
+            <div class="container">
+                <button onclick="buttonHideTodoList()" class="secondary__color">Hide list</button>
+            </div>
+        </section>
+        <section class="content__todo">
+            <div class="container">
+                <div class="content__header">
+                    <div style="color: #484848;">My ToDo List:</div>
+                    <div>
+                        <input class="editTodosDes" type="text">
+                        <button class="primary__color buttonEdit">Change list description</button>
+                    </div>
+                </div>
+                <div class="setHeigh">
+                    <div class="content__body">
+                    </div>
+                </div>
+                <div class="content__footer">
+                    <input class="inputTodo" type="text">
+                    <button onclick="" class="addTodo primary__color">Add item</button>
+                    <button class="remove__color remove_last_todo">Remove last item</button>
+                </div>
+            </div>
+        </section>
+        <script src="./main.js"></script>
+        <!-- <script src="./classesJs.js"></script> -->
+    </div>
+</body>
+
+</html>

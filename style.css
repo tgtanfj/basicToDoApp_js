@@ -1,0 +1,158 @@
+html {
+    scroll-behavior: smooth;
+}
+
+::-moz-selection { /* Code for Firefox */
+    background: rgb(62, 62, 112);
+    color: #fff;
+  }
+  
+  ::selection {
+    background: rgb(62, 62, 112);
+    color: #fff;
+  }
+
+body {
+    font-family: 'Poppins', sans-serif !important;
+    /* width: 1535px; */
+    box-sizing: border-box;
+    /* width: 80%; */
+    margin: 0 auto;
+    height: auto;
+    background-color: #add8e6;
+}
+
+.primary__color {
+    background-color: #508abc;
+}
+
+.secondary__color {
+    background-color: #52bab3;
+}
+
+.remove__color {
+    background-color: #768da3;
+}
+
+button,
+input {
+    height: 30px;
+    border-radius: 5px;
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: 1px solid transparent;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+input {
+    min-width: 250px;
+    border: 1px solid #fff;
+    outline: none;
+    padding-left: 10px;
+}
+
+.container {
+    margin-left: 50px;
+    margin-right: 50px;
+    height: auto;
+}
+
+.header {
+    display: flex;
+}
+
+.header__title {
+    width: 100%;
+    padding: 50px 0;
+}
+
+
+.header>.container>.header__title>div:nth-child(1) {
+    margin-bottom: 30px;
+    font-size: 33px;
+    font-weight: 600;
+    color: #333333;
+}
+
+.header>.container>.header__title>div:nth-child(2) {
+    font-size: 20px;
+    color: #484848;
+}
+
+.container>button {
+    margin: 30px 0;
+    padding: 0 10px;
+    height: 30px;
+}
+
+.hide__button>.container {
+    border-bottom: 1px dotted #637a91;
+    border-top: 1px dotted #637a91;
+}
+
+.content__header {
+    width: 100%;
+}
+
+.content__header>div:nth-child(2) {
+    display: flex;
+    gap: 10px;
+    padding-top: 10px;
+    align-items: center;
+}
+
+.content__todo>.container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px 0;
+}
+
+.setHeigh {
+    height: 240px;
+}
+
+.content__body {
+    width: 100%;
+    height: 240px;
+    overflow-y: scroll;
+    color: #663333;
+}
+
+.content__body>ul>li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    align-items: center;
+    transition: 0.1s ease-in;
+}
+
+.content__body>ul>li:hover {
+    background-color: #bde4f3;
+}
+
+.content__footer {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.content__body::-webkit-scrollbar {
+    display: none;
+}
+
+.content__body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.content__body.hide {
+    display: none;
+}
