@@ -2,15 +2,16 @@ html {
     scroll-behavior: smooth;
 }
 
-::-moz-selection { /* Code for Firefox */
+::-moz-selection {
+    /* Code for Firefox */
     background: rgb(62, 62, 112);
     color: #fff;
-  }
-  
-  ::selection {
+}
+
+::selection {
     background: rgb(62, 62, 112);
     color: #fff;
-  }
+}
 
 body {
     font-family: 'Poppins', sans-serif !important;

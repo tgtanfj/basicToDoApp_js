@@ -8,31 +8,26 @@ let buttonUp = document.querySelector('.buttonUp')
 
 class TodoListService {
     constructor() {
-
+        this.tasks = JSON.parse(localStorage.getItem('tasks')) || ''
     }
-    add() {
-        addTodo.addEventListener('click', function () {
-            if (!inputTodo.value) {
-                alert("Vui lòng nhập tên công việc")
-                return false
-            }
 
-            let tasks = getTaskFromLocalStorage()
-            let task = { name: inputTodo.value }
-            tasks.push(task)
-            inputTodo.value = ''
-            localStorage.setItem('tasks', JSON.stringify(tasks))
-            renderTasks(tasks)
-        })
+    add(inputValue) {
+      this.tasks.push(inputValue)
+      this.updateStore()
+      this.render()
     }
 
     get() {
-        return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []
+        return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : ''
+    }
+    
+    updateStore(){
+        localStorage.setItem('tasks', JSON.stringify(this.tasks))
     }
 
     render() {
         let content = '<ul>'
-        tasks.forEach((task, index) => {
+        this.tasks.forEach((task, index) => {
             content += `
         <li>
             <div>${task.name}</div>
@@ -51,6 +46,3 @@ class TodoListService {
 
 }
 
-const getTodoList = new TodoListService()
-getTodoList.get()
-getTodoList.render()
