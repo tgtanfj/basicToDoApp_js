@@ -8,26 +8,32 @@ let buttonUp = document.querySelector('.buttonUp')
 
 class TodoListService {
     constructor() {
-        this.tasks = JSON.parse(localStorage.getItem('tasks')) || ''
+        this.tasks = JSON.parse(localStorage.getItem('tasks')) || []
     }
 
-    add(inputValue) {
-      this.tasks.push(inputValue)
-      this.updateStore()
-      this.render()
+    add(inputValue, tasks) {
+        let task = { name: inputValue }
+        if (tasks == []) {
+            return false
+        } else {
+            tasks.push(task)
+        }
+        this.updateStore(tasks)
+        inputValue = ''
+        this.render(tasks)
     }
 
     get() {
-        return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : ''
-    }
-    
-    updateStore(){
-        localStorage.setItem('tasks', JSON.stringify(this.tasks))
+        return localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : []
     }
 
-    render() {
+    updateStore(task) {
+        localStorage.setItem('tasks', JSON.stringify(task))
+    }
+
+    render(tasks = []) {
         let content = '<ul>'
-        this.tasks.forEach((task, index) => {
+        tasks.forEach((task, index) => {
             content += `
         <li>
             <div>${task.name}</div>
@@ -44,5 +50,54 @@ class TodoListService {
         listTodo.innerHTML = content
     }
 
+    removeLastItem(tasks) {
+        tasks.pop()
+        this.updateStore(tasks)
+        this.render(tasks)
+    }
+
+    editTodoList(value) {
+        let taskId = buttonEdit.getAttribute('id')
+        let tasks = this.get()
+        let task = { name: value }
+        if (taskId == 0 || taskId) {
+            tasks[taskId] = task
+            buttonEdit.removeAttribute('id')
+        } else {
+            alert("Please select the job you want to edit first!")
+            editTodosDes.value = ''
+            return false
+        }
+        this.updateStore(tasks)
+        this.render(tasks)
+    }
+
+    removeItemById(tasks, id) {
+        tasks.splice(id, 1)
+        this.updateStore(tasks)
+        this.render(tasks)
+    }
+
+    handlePressUpTodo(id, tasks) {
+        if (id == 0) {
+            return false
+        } else {
+            const element = tasks.splice(id, 1)
+            tasks.splice(id - 1, 0, ...element)
+            this.updateStore(tasks)
+            this.render(tasks)
+        }
+    }
+
+    handlePressDownTodo(id, tasks) {
+        if (id == tasks.length) {
+            return false
+        } else {
+            const element = tasks.splice(id, 1)
+            tasks.splice(id + 1, 0, ...element)
+            this.updateStore(tasks)
+            this.render(tasks)
+        }
+    }
 }
 

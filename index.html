@@ -27,7 +27,7 @@
         </section>
         <section class="hide__button">
             <div class="container">
-                <button onclick="buttonHideTodoList()" class="secondary__color">Hide list</button>
+                <button onclick="hideTodoList()" class="secondary__color">Hide list</button>
             </div>
         </section>
         <section class="content__todo">
@@ -36,7 +36,8 @@
                     <div style="color: #484848;">My ToDo List:</div>
                     <div>
                         <input class="editTodosDes" type="text">
-                        <button class="primary__color buttonEdit">Change list description</button>
+                        <button onclick="updateToDoDes()" class="primary__color buttonEdit">Change list
+                            description</button>
                     </div>
                 </div>
                 <div class="setHeigh">
@@ -46,20 +47,61 @@
                 <div class="content__footer">
                     <input class="inputTodo" type="text">
                     <button onclick="addTodoInList()" class="addTodo primary__color">Add item</button>
-                    <button class="remove__color remove_last_todo">Remove last item</button>
+                    <button onclick="removeLastTodo()" class="remove__color remove_last_todo">Remove last item</button>
                 </div>
             </div>
         </section>
-        <script src="./main.js"></script>
-        <!-- <script src="./TodoList.js"></script> -->
+        <!-- <script src="./main.js"></script> -->
+        <script src="./TodoList.js"></script>
         <script>
+            const todoList = new TodoListService()
+            let tasks = todoList.get()
+            todoList.render(tasks)
+            function addTodoInList(e) {
+                let tasks = todoList.get()
+                const value = inputTodo.value;
+                todoList.add(value, tasks)
+                inputTodo.value = ''
+            }
 
-            // const todoList = new TodoListService()
-            // todoList.render()
-            // function addTodoInList(e) {
-            //     const value = inputTodo.value;
-            //     todoList.add(value)
-            // }
+            function removeLastTodo() {
+                let tasks = todoList.get()
+                todoList.removeLastItem(tasks)
+            }
+
+            function editTask(id) {
+                let tasks = todoList.get()
+                if (tasks.length > 0) {
+                    editTodosDes.value = tasks[id].name
+                    buttonEdit.setAttribute('id', id)
+                }
+            }
+
+            function updateToDoDes() {
+                const value = editTodosDes.value;
+                todoList.editTodoList(value)
+                editTodosDes.value = ''
+            }
+
+            function deleteTask(id) {
+                let tasks = todoList.get()
+                buttonEdit.setAttribute('id', id)
+                todoList.removeItemById(tasks, id)
+            }
+
+            function upTodo(id) {
+                let tasks = todoList.get()
+                todoList.handlePressUpTodo(id, tasks)
+            }
+
+            function downTodo(id) {
+                let tasks = todoList.get()
+                todoList.handlePressDownTodo(id, tasks)
+            }
+
+            function hideTodoList() {
+                listTodo.classList.toggle('hide')
+            }
         </script>
     </div>
 </body>
