@@ -35,7 +35,7 @@
                 <div class="content__header">
                     <div style="color: #484848;">My ToDo List:</div>
                     <div>
-                        <input class="editTodosDes" type="text">
+                        <input onkeypress="return handleEnter(event, 'edit')" class="editTodosDes" type="text">
                         <button onclick="updateToDoDes()" class="primary__color buttonEdit">Change list
                             description</button>
                     </div>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
                 <div class="content__footer">
-                    <input class="inputTodo" type="text">
+                    <input onkeypress="return handleEnter(event,'add')" class="inputTodo" type="text">
                     <button onclick="addTodoInList()" class="addTodo primary__color">Add item</button>
                     <button onclick="removeLastTodo()" class="remove__color remove_last_todo">Remove last item</button>
                 </div>
@@ -75,6 +75,7 @@
                     editTodosDes.value = tasks[id].name
                     buttonEdit.setAttribute('id', id)
                 }
+                editTodosDes.focus()
             }
 
             function updateToDoDes() {
@@ -101,6 +102,21 @@
 
             function hideTodoList() {
                 listTodo.classList.toggle('hide')
+            }
+
+            function handleEnter(e, type) {
+                if (e.keyCode == 13) {
+                    switch (type) {
+                        case 'add':
+                            addTodoInList()
+                            break;
+                        case 'edit':
+                            updateToDoDes()
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         </script>
     </div>
