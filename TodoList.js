@@ -12,15 +12,20 @@ class TodoListService {
     }
 
     add(inputValue, tasks) {
-        let task = { name: inputValue }
-        if (tasks == []) {
+        if (inputValue == '') {
+            alert("Please enter the job first!")
             return false
         } else {
-            tasks.push(task)
+            let task = { name: inputValue }
+            if (tasks == []) {
+                return false
+            } else {
+                tasks.push(task)
+            }
+            this.updateStore(tasks)
+            inputValue = ''
+            this.render(tasks)
         }
-        this.updateStore(tasks)
-        inputValue = ''
-        this.render(tasks)
     }
 
     get() {
